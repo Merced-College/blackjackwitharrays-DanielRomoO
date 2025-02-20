@@ -1,7 +1,14 @@
+// Daniel Romo
+//1/24/2024
+// Modify this code and add one of the requested additions
 import java.util.Random;
 import java.util.Scanner;
 
 public class BlackJack {
+// added wins, losses, and ties
+    private static int Wins = 0;
+    private static int Loses = 0;
+    private static int Ties = 0;
 
     private static final String[] SUITS = { "Hearts", "Diamonds", "Clubs", "Spades" };
     private static final String[] RANKS = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King",
@@ -26,6 +33,23 @@ public class BlackJack {
 
         dealerTotal = dealerTurn(dealerTotal);
         determineWinner(playerTotal, dealerTotal);
+
+        // added the printing of the score and a rematch feature as well as a way to add each win, loss, and tie to the score
+        System.out.println("Wins: " + Wins + " Loses: " + Loses + " Ties: " + Ties);
+        String rematch = "yes";
+        while (rematch == "yes") {
+            System.out.println("Would you like to play again?");
+            rematch = scanner.nextLine();
+            if (rematch.equals("yes")) {
+                Rematch(scanner);
+            }
+            else if (rematch.equals("no")) {
+                System.out.println("Thanks for playing!");
+            }
+            else {
+                System.out.println("Invalid action. Please type 'yes' or 'no'.");
+            }
+        }
 
         scanner.close();
     }
